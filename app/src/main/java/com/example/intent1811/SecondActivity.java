@@ -19,5 +19,6 @@ public class SecondActivity extends AppCompatActivity {
         String str = getIntent().getStringExtra(MainActivity.KEY);
 
         binding.txt.setText(str);
+        System.out.println(1);
     }
 }
