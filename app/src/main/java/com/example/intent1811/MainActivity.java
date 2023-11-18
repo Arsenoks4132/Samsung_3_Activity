@@ -11,8 +11,6 @@ import android.widget.Toast;
 import com.example.intent1811.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-    final static String KEY = "key1";
-
     final static int REQUEST = 123;
 
     @Override
@@ -23,12 +21,16 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
 
-        binding.GO.setOnClickListener(new View.OnClickListener() {
+        binding.actB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                intent.putExtra(KEY, binding.ed.getText().toString());
-                startActivityForResult(intent, REQUEST);
+            }
+        });
+        binding.actC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ThirdActivity.class);
             }
         });
     }

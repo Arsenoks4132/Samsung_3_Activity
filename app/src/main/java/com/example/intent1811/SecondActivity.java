@@ -18,10 +18,6 @@ public class SecondActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
 
-        String str = getIntent().getStringExtra(MainActivity.KEY);
-
-        binding.txt.setText(str);
-
         binding.Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
