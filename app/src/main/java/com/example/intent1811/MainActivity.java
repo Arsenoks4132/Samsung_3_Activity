@@ -1,5 +1,6 @@
 package com.example.intent1811;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,6 +11,8 @@ import com.example.intent1811.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     final static String KEY = "key1";
+
+    final static int REQUEST = 123;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +27,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 intent.putExtra(KEY, binding.ed.getText().toString());
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

@@ -2,7 +2,9 @@ package com.example.intent1811;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.intent1811.databinding.ActivitySecondBinding;
 
@@ -19,6 +21,15 @@ public class SecondActivity extends AppCompatActivity {
         String str = getIntent().getStringExtra(MainActivity.KEY);
 
         binding.txt.setText(str);
-        System.out.println(1);
+
+        binding.Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("key2", "Yeeeeeeeee");
+                setResult(RESULT_OK);
+                finish();
+            }
+        });
     }
 }
