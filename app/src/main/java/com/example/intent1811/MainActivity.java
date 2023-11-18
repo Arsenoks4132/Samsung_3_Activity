@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.intent1811.databinding.ActivityMainBinding;
 
@@ -35,5 +36,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == REQUEST && resultCode == RESULT_OK) {
+            String str = data.getStringExtra("key2");
+            Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+        }
     }
 }

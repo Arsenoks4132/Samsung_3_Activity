@@ -27,7 +27,7 @@ public class SecondActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.putExtra("key2", "Yeeeeeeeee");
-                setResult(RESULT_OK);
+                setResult(RESULT_OK, intent);
                 finish();
             }
         });
