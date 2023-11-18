@@ -9,6 +9,7 @@ import android.view.View;
 import com.example.intent1811.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+    final static String KEY = "key1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +23,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                intent.putExtra(KEY, binding.ed.getText().toString());
                 startActivity(intent);
             }
         });
-
-        setContentView(R.layout.activity_main);
     }
 }

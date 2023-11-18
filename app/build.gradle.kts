@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.example.intent1811"
-    compileSdk = 33
+    compileSdk = 34
 
     buildFeatures {
         viewBinding = true;
