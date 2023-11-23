@@ -30,7 +30,7 @@ public class ThirdActivity extends AppCompatActivity {
         binding.actB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ThirdActivity.this, "From activity C to A", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ThirdActivity.this, "From activity C to B", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ThirdActivity.this, SecondActivity.class);
                 startActivity(intent);
             }
