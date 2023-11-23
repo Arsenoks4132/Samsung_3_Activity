@@ -11,7 +11,9 @@ import android.widget.Toast;
 import com.example.intent1811.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-    final static int REQUEST = 123;
+    final static int REQUEST_A = 1;
+    final static int REQUEST_B = 2;
+    final static int REQUEST_C = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +26,26 @@ public class MainActivity extends AppCompatActivity {
         binding.actB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "From activity A to B", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                startActivity(intent);
             }
         });
         binding.actC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "From activity A to C", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, ThirdActivity.class);
+                startActivity(intent);
+            }
+        });
+        binding.Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("name", "A");
+                startActivityForResult(intent, RESULT_OK);
+                finish();
             }
         });
     }
@@ -38,10 +53,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == REQUEST && resultCode == RESULT_OK) {
-            String str = data.getStringExtra("key2");
-            Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+        if (resultCode == RESULT_OK) {
+            String name = data.getStringExtra("name");
+            Toast.makeText(this, "Back from " + name + " to A", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
         }
     }
 }
