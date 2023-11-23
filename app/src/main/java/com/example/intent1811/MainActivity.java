@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
+                intent.putExtra("name", "A");
+                startActivityForResult(intent, RESULT_OK);
                 finish();
             }
         });
