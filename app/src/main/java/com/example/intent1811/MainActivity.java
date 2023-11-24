@@ -11,9 +11,6 @@ import android.widget.Toast;
 import com.example.intent1811.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-    final static int REQUEST_A = 1;
-    final static int REQUEST_B = 2;
-    final static int REQUEST_C = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,42 +20,32 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
 
+        Bundle past_name = getIntent().getExtras();
+
         binding.actB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this, "From activity A to B", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                intent.putExtra("name", "A");
                 startActivity(intent);
             }
         });
         binding.actC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "From activity A to C", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "From activity A to C ", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, ThirdActivity.class);
+                intent.putExtra("name", "A");
                 startActivity(intent);
             }
         });
         binding.Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra("name", "A");
-                startActivityForResult(intent, RESULT_OK);
+                Toast.makeText(MainActivity.this, "Back from A to" + past_name.getString("name"), Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            String name = data.getStringExtra("name");
-            Toast.makeText(this, "Back from " + name + " to A", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
-        }
     }
 }

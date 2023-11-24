@@ -19,11 +19,15 @@ public class ThirdActivity extends AppCompatActivity {
         ActivityThirdBinding binding = ActivityThirdBinding.inflate(getLayoutInflater());
 
         setContentView(binding.getRoot());
+
+        Bundle past_name = getIntent().getExtras();
+
         binding.actA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(ThirdActivity.this, "From activity C to A", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ThirdActivity.this, MainActivity.class);
+                intent.putExtra("name", "C");
                 startActivity(intent);
             }
         });
@@ -32,15 +36,14 @@ public class ThirdActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Toast.makeText(ThirdActivity.this, "From activity C to B", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ThirdActivity.this, SecondActivity.class);
+                intent.putExtra("name", "C");
                 startActivity(intent);
             }
         });
         binding.Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra("name", "C");
-                startActivityForResult(intent, RESULT_OK);
+                Toast.makeText(ThirdActivity.this, "Back from C to " + past_name.getString("name"), Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

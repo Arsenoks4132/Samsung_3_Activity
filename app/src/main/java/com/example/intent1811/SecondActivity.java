@@ -20,11 +20,14 @@ public class SecondActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
 
+        Bundle past_name = getIntent().getExtras();
+
         binding.actA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(SecondActivity.this, "From activity B to A", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(SecondActivity.this, MainActivity.class);
+                intent.putExtra("name", "B");
                 startActivity(intent);
             }
         });
@@ -33,28 +36,16 @@ public class SecondActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Toast.makeText(SecondActivity.this, "From activity B to C", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(SecondActivity.this, ThirdActivity.class);
+                intent.putExtra("name", "B");
                 startActivity(intent);
             }
         });
         binding.Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra("name", "B");
-                startActivityForResult(intent, RESULT_OK);
+                Toast.makeText(SecondActivity.this, "Back from B to " + past_name.getString("name"), Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            String name = data.getStringExtra("name");
-            Toast.makeText(this, "Back from " + name + " to B", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
-        }
     }
 }
