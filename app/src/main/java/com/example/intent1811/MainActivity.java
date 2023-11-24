@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.intent1811.databinding.ActivityMainBinding;
@@ -23,9 +22,12 @@ public class MainActivity extends AppCompatActivity {
 
         Bundle past_name = getIntent().getExtras();
 
-        TextView textView = new TextView(this);
+        String name = "none";
 
-        textView.setText("HELLO");
+        try {
+            name = past_name.getString("name");
+        } catch (Exception e) {}
+
         binding.actB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,10 +46,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        String finalName = name;
         binding.Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Back from A to " + past_name.getString("name"), Toast.LENGTH_SHORT).show();
+                if (finalName != "none") {
+                    Toast.makeText(MainActivity.this, "Back from A to " + finalName, Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "Back to Desctop", Toast.LENGTH_SHORT).show();
+                }
                 finish();
             }
         });
