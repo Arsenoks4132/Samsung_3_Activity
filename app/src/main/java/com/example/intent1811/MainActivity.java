@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.intent1811.databinding.ActivityMainBinding;
@@ -22,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
 
         Bundle past_name = getIntent().getExtras();
 
+        TextView textView = new TextView(this);
+
+        textView.setText("HELLO");
         binding.actB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         binding.Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Back from A to" + past_name.getString("name"), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Back from A to " + past_name.getString("name"), Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

@@ -48,15 +48,4 @@ public class ThirdActivity extends AppCompatActivity {
             }
         });
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            String name = data.getStringExtra("name");
-            Toast.makeText(this, "Back from " + name + " to C", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
-        }
-    }
 }
